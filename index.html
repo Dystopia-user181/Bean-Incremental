@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Not Fission Simulator</title>
+	<title>Beancremental</title>
 	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<script defer charset="utf-8" type="text/javascript" src="js/lib/break_infinity.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/init.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/iterate.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/saving.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/loading.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/ui.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/notation.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/tab.js"></script>
 </head>
 <body>
-	<h2>You have <span id="energyamt">100</span> energy</h2>
-	<span>You are getting <span id="energypersec">0</span> energy per second</span>
-	<button class="buybtn">Test</button>
+	<p>You start off with 豆<br>
+	You divide it into 一口丷一<br>
+	You decide to use the complex spelling of 一, 壹 and end up with 壹口丷壹<br>
+	You further divide 壹 into 土冖豆<br>
+	You have now made a loop</p>
+	<hr><br>
+	<div class="tab" id="Characters">
+		<span id="resources">You have <span id="beanamt" class="item">1</span> 豆<br>
+		You have <span id="oneamt" class="item">0</span> 一<br>
+		You have <span id="squareamt" class="item">0</span> 口<br>
+		You have <span id="legsamt" class="item">0</span> 丷<br>
+		You have <span id="cmoneamt" class="item">0</span> 壹<br>
+		You have <span id="dirtamt" class="item">0</span> 土<br>
+		You have <span id="capamt" class="item">0</span> 冖<br></span>
+		<br><br>
+		<button class="buybtn" id="iterbtn" onclick="iterbtn()">Iterate</button>
+		<br><br>
+		<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
+	</div>
 </body>
 </html>

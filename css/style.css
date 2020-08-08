@@ -1,1 +1,30 @@
+* {
+	background-color: #122;
+	color: #fff;
 	font-family: Lucida Console;
+	outline: none;
+}
+
+.item {
+	color: #56d;
+}
+#resources {
+	font-size: 20px;
+}
+
+button.buybtn:disabled {
+	border: 2px solid #f54;
+}
+button.buybtn:enabled {
+	border: 2px solid #3f4;
+}
+
+button {
+	opacity: 0.6;
+}
+button:hover {
+	opacity: 1;
+}
+button:active {
+	background-color: #344;
+}
