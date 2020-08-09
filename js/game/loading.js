@@ -11,7 +11,7 @@ function runParse(obj, obj2) {
 				obj[key] = obj2[key];
 			} else if (typeof obj[key] === "string" && typeof obj2[key] === "object") {
 				obj[key] = new Decimal(obj[key]);
-			} else if (typeof initPlayer[key] === "object" && typeof obj[key] === "object") {
+			} else if (typeof obj2[key] === "object" && typeof obj[key] === "object") {
 				runParse(obj[key], obj2[key]);
 			} else if (typeof obj[key] != typeof obj2[key]) {
 				obj[key] = obj2[key];
