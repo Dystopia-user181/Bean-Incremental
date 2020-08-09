@@ -35,12 +35,19 @@ function iter(max=0, mult=1) {
 	}
 
 	player.tutorial.unlockedUps = true;
+	var canUnlockPrestige = true;
+	Object.keys(player.char).forEach(function (key) {
+		if (player.char[key].lt(1e10)) {
+			canUnlockPrestige = false;
+		}
+	});
+	player.tutorial.unlockedPrestige = player.tutorial.unlockedPrestige || canUnlockPrestige;
 }
 
 function iterbtn() {
 	var pc = player.char;
 	$("iterbtn").disabled = true;
-	$("iterbar").style.transition = `${pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10)}s all linear`;
+	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10), 1.1)}s all linear`;
 	setTimeout(function() {
 		$("iterbar").style.width = "100%";
 		setTimeout(function() {
@@ -48,7 +55,7 @@ function iterbtn() {
 			$("iterbar").style.width = "2%";
 			$("iterbtn").disabled = false;
 			iter()
-		}, pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10)*1000);
+		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10), 1.1)*1000);
 	}, 50);
 }
 
@@ -59,10 +66,10 @@ function autowritertick() {
 	}
 	if (player.auto.mul(player.upgrades.includes("12") ? 4 : 1).gt(40)) {
 		setTimeout(autowritertick, 40);
-		iter(player.auto.mul(250), player.auto.div(40));
+		iter(player.auto.mul(2500).mul(player.upgrades.includes("14") ? player.auto.mul(1.5).add(1) : 1), player.auto.div(40));
 	} else {
 		setTimeout(autowritertick, 4000/player.auto.toNumber()/(player.upgrades.includes("12") ? 4 : 1));
-		iter(10000);
+		iter(Decimal.mul(player.upgrades.includes("14") ? player.auto.mul(1.5).add(1) : 1, 100000));
 	}
 }
 autowritertick();

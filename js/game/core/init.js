@@ -11,6 +11,9 @@ function defaultPlayer() {
 		},
 		auto: new Decimal(0),
 		upgrades: [],
+		sup: [],
+		cmpcbean: new Decimal(0),
+		shrinkstat: new Decimal(0),
 		tutorial: {
 			unlockedUps: false,
 			unlockedPrestige: false

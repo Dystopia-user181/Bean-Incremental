@@ -6,7 +6,8 @@
 	<script defer charset="utf-8" type="text/javascript" src="js/lib/break_infinity.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/init.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/iterate.js"></script>
-	<script defer charset="utf-8" type="text/javascript" src="js/game/core/upgrades.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/autowriter.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/prestige.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/saving.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/loading.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/ui.js"></script>
@@ -22,15 +23,11 @@
 	<br>
 	<div>
 		<button onclick="player.navigation.tab = 'Characters'">Characters</button>
-		<button onclick="player.navigation.tab = 'Upgrades'" id="upgradetabbtn" style="display: none;">Upgrades</button>
+		<button onclick="player.navigation.tab = 'Auto'" id="autotabbtn" style="display: none;">Autowriters</button>
+		<button onclick="player.navigation.tab = 'Shrink'" id="shrinktabbtn" style="display: none;">Shrink</button>
+		<button onclick="player.navigation.tab = 'Options'">Options</button>
 	</div>
-	<div style="position: absolute; right: 0; transform: translateY(-100%)">
-		<button class="optionsbtn" onclick="expo()">Export</button>
-		<br>
-		<button class="optionsbtn" onclick="impo()">Import</button>
-		<br>
-		<button class="optionsbtn" onclick="reset()">Reset</button>
-	</div>
+	<button class="prestigebtn" id="shrinkbtn" onclick="shrink()" style="display: none; right: 0;">Shrink all characters into <span id="shrinkamt">1</span> Largely Compact 豆</button>
 	<hr><br>
 	<div class="tab" id="Characters">
 		<span id="resources">
@@ -44,17 +41,33 @@
 		<br><br>
 		<button class="buybtn" id="iterbtn" onclick="iterbtn()">Iterate</button>
 		<br><br>
-		<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
 	</div>
-	<div class="tab" id="Upgrades" style="display: none;">
+	<div class="tab" id="Auto" style="display: none;">
 		<table><tbody>
 			<tr>
-				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 10000 per autowriter)</button></td>
-				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: 1.00e6 士</button></td>
-				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7', 'cap')">Autowriters scale 100 instead of 128<br>Cost: 1.00e7 冖</button></td>
+				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>You have <span id="autos">0</span> autowriters.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 100000 per autowriter)</button></td>
+				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: <span id="upautocost">1.00e6</span> 士</button></td>
+				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7', 'square')">Autowriters scale 80 instead of 128<br>Cost: <span id="downautocostcost">1.00e7</span> 口</button></td>
+				<td><button class="upgradebtn" id="upautocap" onclick="buyUp('14', '1e8', 'cap')">Autowriter cap is boosted by autowriters<br>Currently: ×<span id="autocapboost">1.00</span><br>Cost: <span id="upautocapcost">1.00e8</span> 冖</button></td>
 			</tr>
 		</tbody></table>
 	</div>
+	<div class="tab" id="Shrink">
+		You have <span id="cmpcbeanamt" style="color: #de2">0</span> Largely Compact 豆
+		<br><br>
+		<table><tbody>
+			<tr>
+				<td><button class="supgradebtn" id="shrinkprice" onclick="buySup('11', '1')">All non-repeatable autowriter purchases are 5x as cheap, all repeatable autowriter purchases scale 25% less<br>Cost: 1 Largely Compact 豆</button></td>
+			</tr>
+		</tbody></table>
+	</div>
+	<div class="tab" id="Options" style="display: none; width: 100%" align="center">
+		<button class="optionsbtn" onclick="save()">Save</button>
+		<button class="optionsbtn" onclick="reset()">Reset</button>
+		<button class="optionsbtn" onclick="expo()">Export</button>
+		<button class="optionsbtn" onclick="impo()">Import</button>
+	</div>
+	<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px; position: absolute; bottom: 50px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
 	<textarea id="savetext" style="display: none;"></textarea>
 </body>
 </html>

@@ -2,6 +2,9 @@ body {
 	background-color: #122;
 	color: #fff;
 	font-family: Lucida Console;
+	transition: all 1s;
+	height: 96vh;
+	width: 98vw;
 }
 
 button {
@@ -38,11 +41,44 @@ button.upgradebtn.bought {
 	opacity: 1;
 }
 button.upgradebtn {
-	height: 150px;
-	width: 24vw;
+	height: 120px;
+	width: 22vw;
 }
 .optionsbtn {
-	width: 120px;
+	width: 20%;
+	height: 50px;
+	font-size: 24px;
+	border: none;
+	box-shadow: 0px 0px 6px 2px #5df;
+}
+
+.prestigebtn {
+	height: 80px;
+	width: 150px;
+	position: absolute;
+	transform: translateY(-100%);
+}
+.prestigebtn:enabled {
+	border-color: #ce4;
+}
+.prestigebtn:disabled {
+	border-color: #b08;
+}
+
+button.supgradebtn:enabled {
+	border: 2px dotted #882;
+}
+button.supgradebtn:disabled {
+	border: 2px solid #f00;
+}
+button.supgradebtn.bought {
+	border: 2px solid #ff5;
+	background-color: #293;
+	opacity: 1;
+}
+button.supgradebtn {
+	height: 120px;
+	width: 22vw;
 }
 
 button:hover {
