@@ -6,6 +6,7 @@
 	<script defer charset="utf-8" type="text/javascript" src="js/lib/break_infinity.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/init.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/iterate.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/upgrades.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/saving.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/loading.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/ui.js"></script>
@@ -16,8 +17,20 @@
 	<p>You start off with 豆<br>
 	You divide it into 一口丷一<br>
 	You decide to use the complex spelling of 一, 壹 and end up with 壹口丷壹<br>
-	You further divide 壹 into 土冖豆<br>
+	You further divide 壹 into 士冖豆<br>
 	You have now made a loop</p>
+	<br>
+	<div>
+		<button onclick="player.navigation.tab = 'Characters'">Characters</button>
+		<button onclick="player.navigation.tab = 'Upgrades'" id="upgradetabbtn" style="display: none;">Upgrades</button>
+	</div>
+	<div style="position: absolute; right: 0; transform: translateY(-100%)">
+		<button class="optionsbtn" onclick="expo()">Export</button>
+		<br>
+		<button class="optionsbtn" onclick="impo()">Import</button>
+		<br>
+		<button class="optionsbtn" onclick="reset()">Reset</button>
+	</div>
 	<hr><br>
 	<div class="tab" id="Characters">
 		<span id="resources">You have <span id="beanamt" class="item">1</span> 豆<br>
@@ -25,12 +38,17 @@
 		You have <span id="squareamt" class="item">0</span> 口<br>
 		You have <span id="legsamt" class="item">0</span> 丷<br>
 		You have <span id="cmoneamt" class="item">0</span> 壹<br>
-		You have <span id="dirtamt" class="item">0</span> 土<br>
+		You have <span id="dirtamt" class="item">0</span> 士<br>
 		You have <span id="capamt" class="item">0</span> 冖<br></span>
 		<br><br>
 		<button class="buybtn" id="iterbtn" onclick="iterbtn()">Iterate</button>
 		<br><br>
 		<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
 	</div>
+	<div class="tab" id="Upgrades" style="display: none;">
+		<button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 10000 per autowriter)</button>
+		<button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: <span id="upautocost">1.00e6</span> 士</button>
+	</div>
+	<textarea id="savetext" style="display: none;"></textarea>
 </body>
 </html>

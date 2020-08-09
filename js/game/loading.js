@@ -47,15 +47,17 @@ var parsedsave = JSON.parse(localStorage.getItem("beancrementalsave"));
 if (localStorage.getItem("beancrementalsave") !== null) {
 	load(parsedsave);
 }
-/*function expo() {
+function expo() {
 	var sv = $("savetext");
 	sv.style.display = "block";
+	sv.style.position = "absolute";
 	sv.innerText = btoa(JSON.stringify(player));
 	sv.focus();
 	sv.select();
 	document.execCommand('copy');
+	sv.style.bottom = "1000vh";
 	sv.style.display = "none";
 }
 function impo() {
 	load(JSON.parse(atob(prompt("Paste your save here."))));
-}*/
+}

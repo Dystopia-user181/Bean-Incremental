@@ -8,7 +8,8 @@ var initPlayer = {
 		dirt: new Decimal(0),
 		cap: new Decimal(0)
 	},
-	auto: 0,
+	auto: new Decimal(0),
+	upgrades: [],
 	tutorial: {
 		unlockedUps: false,
 		unlockedPrestige: false

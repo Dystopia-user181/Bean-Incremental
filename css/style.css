@@ -1,8 +1,16 @@
-* {
+body {
+	background-color: #122;
+	color: #fff;
+	font-family: Lucida Console;
+}
+
+button {
 	background-color: #122;
 	color: #fff;
 	font-family: Lucida Console;
 	outline: none;
+	border: 2px solid #fff;
+	opacity: 0.7;
 }
 
 .item {
@@ -18,10 +26,25 @@ button.buybtn:disabled {
 button.buybtn:enabled {
 	border: 2px solid #3f4;
 }
-
-button {
-	opacity: 0.6;
+button.upgradebtn:enabled {
+	border: 2px dotted #fc4;
 }
+button.upgradebtn:disabled {
+	border: 2px solid #f00;
+}
+button.upgradebtn.bought:disabled {
+	border: 2px solid #d96;
+	background-color: #3d4;
+	opacity: 1;
+}
+button.upgradebtn {
+	height: 150px;
+	width: 24%;
+}
+.optionsbtn {
+	width: 120px;
+}
+
 button:hover {
 	opacity: 1;
 }
