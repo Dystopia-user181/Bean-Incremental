@@ -16,13 +16,16 @@ function updateUI() {
 	$("downautocost").className = `upgradebtn${player.upgrades.includes("13") ? " bought" : ""}`;
 	tabTo(player.navigation.tab);
 }
-function getDisplay (bool) {
+
+function getDisplay(bool) {
 	return (bool ? "block" : "none");
 }
-function getInlineDisplay (bool) {
+function getInlineDisplay(bool) {
 	return (bool ? "inline-block" : "none");
 }
-function getVisibility (bool) {
+
+function getVisibility(bool) {
 	return (bool ? "visible" : "hidden");
 }
+
 setInterval(updateUI, 50);

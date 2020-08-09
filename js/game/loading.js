@@ -1,32 +1,9 @@
-/*
-throw (truck)
-try 
-catch (truck)
-
-//Output: Failed to catch (truck): Too heavy
-
-Something something Python 🐍
-0.1+0.2 ahhhhhhh
-php bad lollolol funny
-Why is css
-Redfire has AD clone
-"Hello world";
-Why doesn't this code have "use strict";?
-oh good idea*/
-"use strict";
-/*
-```js- wait I'm not in discord
-qwertyuiopasdfghjklzxcvbnm
-mnbvcxzlkjhgfdsapoiuytrewq
-qazwsxedcrfvtgbyhnujmikolp
-plmoknijbuhvygctfxrdzeswaq
-B
-*/
 function load(save) {
 	if (typeof save !== "object") return;
 	if (save === null) return;
-	player = runParse(save, initPlayer);
+	player = runParse(save, defaultPlayer());
 }
+
 function runParse(obj, obj2) {
 	Object.keys(obj2).forEach(function (key, index) {
 		if (key != "proto") {
@@ -41,12 +18,15 @@ function runParse(obj, obj2) {
 			}
 		}
 	});
-	return (obj);
+
+	return obj;
 }
+
 var parsedsave = JSON.parse(localStorage.getItem("beancrementalsave"));
 if (localStorage.getItem("beancrementalsave") !== null) {
 	load(parsedsave);
 }
+
 function expo() {
 	var sv = $("savetext");
 	sv.style.display = "block";
@@ -58,6 +38,10 @@ function expo() {
 	sv.style.bottom = "1000vh";
 	sv.style.display = "none";
 }
+
 function impo() {
-	load(JSON.parse(atob(prompt("Paste your save here."))));
+	let save = prompt("Paste your save here.");
+	if (save !== undefined) {
+		load(JSON.parse(atob(save)));
+	}
 }

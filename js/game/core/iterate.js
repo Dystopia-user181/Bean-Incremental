@@ -3,30 +3,37 @@ function iter(max=0, mult=1) {
 	if (max.eq(0)) {
 		var cmone = player.char.cmone;
 		var bean = player.char.bean;
+
 		player.char.dirt = player.char.dirt.add(cmone.mul(mult));
 		player.char.cap = player.char.cap.add(cmone.mul(mult));
-		player.char.cmone = new Decimal(0);
-		player.char.cmone = player.char.cmone.add(player.char.one.mul(mult));
-		player.char.one = new Decimal(0);
-		player.char.legs = player.char.legs.add(bean.mul(mult));
-		player.char.one = player.char.one.add(bean.mul(2).mul(mult));
+
+		player.char.cmone = player.char.one.mul(mult);
+
+		player.char.one = bean.mul(2).mul(mult);
 		player.char.square = player.char.square.add(bean.mul(mult));
-		player.char.bean = new Decimal(0);
-		player.char.bean = player.char.bean.add(cmone.mul(mult));
+		player.char.legs = player.char.legs.add(bean.mul(mult));
+
+		player.char.bean = cmone.mul(mult);
 	} else {
 		var cmone = player.char.cmone;
 		var bean = player.char.bean;
+
 		player.char.dirt = player.char.dirt.add(cmone.min(max).mul(mult));
 		player.char.cap = player.char.cap.add(cmone.min(max).mul(mult));
+
 		player.char.cmone = player.char.cmone.sub(cmone.min(max));
 		player.char.cmone = player.char.cmone.add(player.char.one.min(max).mul(mult));
+
 		player.char.one = player.char.one.sub(player.char.one.min(max));
-		player.char.legs = player.char.legs.add(bean.min(max).mul(mult));
 		player.char.one = player.char.one.add(bean.min(max).mul(2).mul(mult));
+
+		player.char.legs = player.char.legs.add(bean.min(max).mul(mult));
 		player.char.square = player.char.square.add(bean.min(max).mul(mult));
+
 		player.char.bean = player.char.bean.sub(player.char.bean.min(max));
 		player.char.bean = player.char.bean.add(cmone.min(max).mul(mult));
 	}
+
 	player.tutorial.unlockedUps = true;
 }
 
