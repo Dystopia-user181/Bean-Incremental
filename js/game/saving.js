@@ -6,7 +6,7 @@ function reset() {
 	if (confirm("Do you want to reset your save?")) {
 		setTimeout(function () {
 			if (prompt("Type RESET in caps to confirm.") === "RESET") {
-				player = initPlayer;
+				player = defaultPlayer();
 			}
 		}, 200);
 	}
