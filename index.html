@@ -14,7 +14,7 @@
 	<script defer charset="utf-8" type="text/javascript" src="js/game/tab.js"></script>
 </head>
 <body>
-	<p>You start off with 豆<br>
+	<p>You start off with 豆 (bean)<br>
 	You divide it into 一口丷一<br>
 	You decide to use the complex spelling of 一, 壹 and end up with 壹口丷壹<br>
 	You further divide 壹 into 士冖豆<br>
@@ -46,8 +46,13 @@
 		<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
 	</div>
 	<div class="tab" id="Upgrades" style="display: none;">
-		<button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 10000 per autowriter)</button>
-		<button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: <span id="upautocost">1.00e6</span> 士</button>
+		<table><tbody>
+			<tr>
+				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 10000 per autowriter)</button></td>
+				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: 1.00e6 士</button></td>
+				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7', 'cap')">Autowriters scale 100 instead of 128<br>Cost: 1.00e7 冖</button></td>
+			</tr>
+		</tbody></table>
 	</div>
 	<textarea id="savetext" style="display: none;"></textarea>
 </body>

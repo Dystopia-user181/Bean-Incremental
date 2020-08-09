@@ -7,9 +7,13 @@ function updateUI() {
 	$("cmoneamt").innerText = toSci(pc.cmone);
 	$("dirtamt").innerText = toSci(pc.dirt);
 	$("capamt").innerText = toSci(pc.cap);
-	$("autowritercost").innerText = toSci(Decimal.pow(256, player.auto).mul(256));
+	$("autowritercost").innerText = toSci(Decimal.pow(autoScale(), player.auto).mul(autoScale()));
 	$("upgradetabbtn").style.display = getInlineDisplay(player.tutorial.unlockedUps);
-	$("buyauto").disabled = pc.legs.lt(Decimal.pow(256, player.auto).mul(256));
+	$("buyauto").disabled = pc.legs.lt(Decimal.pow(autoScale(), player.auto).mul(autoScale()));
+	$("upauto").disabled = pc.dirt.lt(1e6) || player.upgrades.includes("12");
+	$("upauto").className = `upgradebtn${player.upgrades.includes("12") ? " bought" : ""}`;
+	$("downautocost").disabled = pc.cap.lt(1e7) || player.upgrades.includes("13");
+	$("downautocost").className = `upgradebtn${player.upgrades.includes("13") ? " bought" : ""}`;
 	tabTo(player.navigation.tab);
 }
 function getDisplay (bool) {

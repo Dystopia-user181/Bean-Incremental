@@ -50,11 +50,11 @@ function autowritertick() {
 		setTimeout(autowritertick, 1000);
 		return;
 	}
-	if (player.auto.mul(1).gt(40)) {
+	if (player.auto.mul(player.upgrades.includes("12") ? 4 : 1).gt(40)) {
 		setTimeout(autowritertick, 40);
 		iter(player.auto.mul(250), player.auto.div(40));
 	} else {
-		setTimeout(autowritertick, 4000/player.auto.toNumber());
+		setTimeout(autowritertick, 4000/player.auto.toNumber()/(player.upgrades.includes("12") ? 4 : 1));
 		iter(10000);
 	}
 }
