@@ -9,10 +9,12 @@ function updateUI() {
 	$("dirtamt").innerText = toSci(pc.dirt);
 	$("capamt").innerText = toSci(pc.cap);
 	$("autos").innerText = toSci(player.auto);
-	$("autointerval").innerText = toSci(4/(player.upgrades.includes('12') ? 4 : 1));
+	$("autointerval").innerText = toSci(4/(player.upgrades.includes("12") ? 4 : 1));
 	$("cmpcbeanamt").innerText = toSci(player.cmpcbean);
 	$("shrinkamt").innerText = toSci(new Decimal(sumOfAllChar.log10()/10).pow(sumOfAllChar.log(500)/3).sub(0.2).pow(2).floor());
 	$("autocapboost").innerText = toSci(player.auto.mul(2).add(1), 2);
+	$("autospeedboost").innerText = toSci(pc.dirt.add(10).log10(), 2);
+	$("upitercost").innerText = toSci(Decimal.mul(32, Math.pow(750, player.iterlvl)));
 	$("autowritercost").innerText = toSci(Decimal.pow(autoScale(), player.auto).mul(autoScale()));
 	$("upautocost").innerText = toSci(new Decimal(1e6).div(player.sup.includes("11") ? 5 : 1));
 	$("downautocostcost").innerText = toSci(new Decimal(1e7).div(player.sup.includes("11") ? 5 : 1));
@@ -22,6 +24,7 @@ function updateUI() {
 	$("shrinktabbtn").style.display = getDisplay(player.tutorial.unlockedPrestige);
 	$("shrinkbtn").style.display = getDisplay(player.tutorial.unlockedPrestige);
 	$("secondrow").style.display = getDisplay(player.sup.includes("12"), "table-row");
+	$("upiterbtn").disabled = player.char.one.lt(Decimal.mul(32, Math.pow(750, player.iterlvl)));
 	$("shrinkbtn").disabled = new Decimal(sumOfAllChar.log10()/10).pow(sumOfAllChar.log(500)/3).sub(0.2).pow(2).floor().lt(1);
 	$("buyauto").disabled = pc.legs.lt(Decimal.pow(autoScale(), player.auto).mul(autoScale()));
 	$("upauto").disabled = pc.dirt.lt(1e6/(player.sup.includes("11") ? 5 : 1)) || player.upgrades.includes("12");

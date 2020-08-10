@@ -9,6 +9,7 @@ function defaultPlayer() {
 			dirt: new Decimal(0),
 			cap: new Decimal(0)
 		},
+		iterlvl: 0,
 		auto: new Decimal(0),
 		upgrades: [],
 		sup: [],

@@ -1,9 +1,8 @@
 function iter(max=0, mult=1) {
 	max = new Decimal(max);
+	var cmone = player.char.cmone;
+	var bean = player.char.bean;
 	if (max.eq(0)) {
-		var cmone = player.char.cmone;
-		var bean = player.char.bean;
-
 		player.char.dirt = player.char.dirt.add(cmone.mul(mult));
 		player.char.cap = player.char.cap.add(cmone.mul(mult));
 
@@ -15,9 +14,6 @@ function iter(max=0, mult=1) {
 
 		player.char.bean = cmone.mul(mult);
 	} else {
-		var cmone = player.char.cmone;
-		var bean = player.char.bean;
-
 		player.char.dirt = player.char.dirt.add(cmone.min(max).mul(mult));
 		player.char.cap = player.char.cap.add(cmone.min(max).mul(mult));
 
@@ -47,16 +43,22 @@ function iter(max=0, mult=1) {
 function iterbtn() {
 	var pc = player.char;
 	$("iterbtn").disabled = true;
-	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10), 1.1)}s all linear`;
+	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10)/Math.pow(1.3, player.iterlvl), 1.1)}s all linear`;
 	setTimeout(function() {
 		$("iterbar").style.width = "100%";
 		setTimeout(function() {
 			$("iterbar").style.transition = "";
 			$("iterbar").style.width = "2%";
 			$("iterbtn").disabled = false;
-			iter()
-		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10), 1.1)*1000);
+			iter();
+		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).log(10)/Math.pow(1.3, player.iterlvl), 1.1)*1000);
 	}, 50);
+}
+
+function upiter() {
+	if (player.char.square.lt(Decimal.mul(32, Math.pow(750, player.iterlvl)))) return;
+	player.char.square = player.char.square.sub(Decimal.mul(32, Math.pow(750, player.iterlvl)));
+	player.iterlvl++;
 }
 
 function autowritertick() {
@@ -64,12 +66,12 @@ function autowritertick() {
 		setTimeout(autowritertick, 1000);
 		return;
 	}
-	if (player.auto.mul(player.upgrades.includes("12") ? 4 : 1).gt(40)) {
-		setTimeout(autowritertick, 40);
+	if (player.auto.mul(player.upgrades.includes("12") ? 4 : 1).mul(player.upgrades.includes("24") ? (player.upgrades.includes("14") ? player.auto.mul(0.2).add(0.1) : 0.1) : 1).mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1).gte(40)) {
+		setTimeout(autowritertick, 100);
 		iter(player.auto.mul(2500).mul(player.upgrades.includes("14") ? player.auto.mul(2).add(1) : 1), player.auto.div(40));
 	} else {
-		setTimeout(autowritertick, 4000/player.auto.toNumber()/(player.upgrades.includes("12") ? 4 : 1));
-		iter(Decimal.mul(player.upgrades.includes("14") ? player.auto.mul(2).add(1) : 1, 100000));
+		setTimeout(autowritertick, 4000/player.auto.toNumber()/(player.upgrades.includes("12") ? 4 : 1)/(player.upgrades.includes("24") ? (player.upgrades.includes("14") ? player.auto.mul(0.2).add(0.1).toNumber() : 0.1) : 1)/(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1));
+		iter(Decimal.mul((player.upgrades.includes("24") ? 0 : (player.upgrades.includes("14") ? player.auto.mul(2).add(1) : 1)), 100000), 1);
 	}
 }
 autowritertick();

@@ -40,12 +40,14 @@
 		You have <span id="capamt" class="item">0</span> 冖<br></span>
 		<br><br>
 		<button class="buybtn" id="iterbtn" onclick="iterbtn()">Iterate</button>
+		<br>
+		<button class="buybtn" id="upiterbtn" onclick="upiter()">Makes iterating 1.3 times faster<br>Cost: <span id="upitercost">0</span> 口</button>
 		<br><br>
 	</div>
 	<div class="tab" id="Auto" style="display: none;">
 		<table><tbody>
 			<tr>
-				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>You have <span id="autos">0</span> autowriters.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>(Capped at 100000 per autowriter)</button></td>
+				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>You have <span id="autos">0</span> autowriters.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>(<span id="autocapamt">Capped at 100000 per autowriter</span>)</button></td>
 				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Currently: <span id="autointerval">4</span> seconds<br>Cost: <span id="upautocost">1.00e6</span> 士</button></td>
 				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7', 'square')">Autowriters scale 80 instead of 128<br>Cost: <span id="downautocostcost">1.00e7</span> 口</button></td>
 				<td><button class="upgradebtn" id="upautocap" onclick="buyUp('14', '1e8', 'cap')">Autowriter cap is boosted by autowriters<br>Currently: ×<span id="autocapboost">1.00</span><br>Cost: <span id="upautocapcost">1.00e8</span> 冖</button></td>
@@ -54,7 +56,7 @@
 				<td><button class="upgradebtn" id="upautospeed" onclick="buyUp('21', '1e9', 'dirt')">Autowriter speed is boosted by 士<br>Currently: ×<span id="autospeedboost">1.00</span><br>Cost: <span id="upautospeedcost">1.00e9</span> 士</button></td>
 				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e600000', 'dirt')">haha this is a placeholder<br>Cost: <span id="upautocost">1.00e6</span> ass</button></td>
 				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7000', 'square')">Haha this is a placeholder<br>Cost: <span id="downautocostcost">1.00e7</span> ass</button></td>
-				<td><button class="upgradebtn" id="removeautocap" onclick="buyUp('24', '1e130000', 'cmone')">Remove the cap from autowriters, but makes them twice as slow. Upgrades to the autowriter cap affect their speed instead. (DOES NOT WORK)<br>Cost: <span id="removeautocapcost">1.00e13</span> 壹</button></td>
+				<td><button class="upgradebtn" id="removeautocap" onclick="buyUp('24', '1e150000', 'cmone')">Remove the cap from autowriters, but makes them ten times as slow. Upgrades to the autowriter cap affect their speed instead. (DOES NOT WORK)<br>Cost: <span id="removeautocapcost">1.00e15</span> 壹</button></td>
 			</tr>
 		</tbody></table>
 	</div>
