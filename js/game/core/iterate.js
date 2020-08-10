@@ -66,10 +66,10 @@ function autowritertick() {
 	}
 	if (player.auto.mul(player.upgrades.includes("12") ? 4 : 1).gt(40)) {
 		setTimeout(autowritertick, 40);
-		iter(player.auto.mul(2500).mul(player.upgrades.includes("14") ? player.auto.mul(1.5).add(1) : 1), player.auto.div(40));
+		iter(player.auto.mul(2500).mul(player.upgrades.includes("14") ? player.auto.mul(2).add(1) : 1), player.auto.div(40));
 	} else {
 		setTimeout(autowritertick, 4000/player.auto.toNumber()/(player.upgrades.includes("12") ? 4 : 1));
-		iter(Decimal.mul(player.upgrades.includes("14") ? player.auto.mul(1.5).add(1) : 1, 100000));
+		iter(Decimal.mul(player.upgrades.includes("14") ? player.auto.mul(2).add(1) : 1, 100000));
 	}
 }
 autowritertick();

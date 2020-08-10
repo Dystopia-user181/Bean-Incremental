@@ -12,16 +12,26 @@ function prestige(keysToKeep) {
 }
 
 function shrink() {
-	var canPrestige = true;
-	Object.keys(player.char).forEach(function (key) {
-		if (player.char[key].lt(1e10)) {
-			canPrestige = false;
-		}
-	});
-	if (!canPrestige) return;
-	prestige(["cmpcbean", "shrinkstat", "sup"]);
-	player.cmpcbean = player.cmpcbean.add(1);
-	player.shrinkstat = player.shrinkstat.add(1);
+	var pc = player.char;
+	var sumOfAllChar = pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap);
+	if (new Decimal(sumOfAllChar.log10()/10).pow(sumOfAllChar.log(500)/3).sub(0.2).pow(2).floor().lt(1)) return;
+	if (player.cmpcbean.gte(10)) {
+		prestige(["cmpcbean", "shrinkstat", "sup"]);
+		player.cmpcbean = player.cmpcbean.add(new Decimal(sumOfAllChar.log10()/10).pow(sumOfAllChar.log(500)/3).sub(0.2).pow(2).floor());
+		player.shrinkstat = player.shrinkstat.add(1);
+	} else {
+		$("body").style.height = "0vh";
+		$("body").style.width = "0vw";
+		$("body").style.fontSize = "0px";
+		setTimeout(function() {
+			prestige(["cmpcbean", "shrinkstat", "sup"]);
+			player.cmpcbean = player.cmpcbean.add(new Decimal(sumOfAllChar.log10()/10).pow(sumOfAllChar.log(500)/3).sub(0.2).pow(2).floor());
+			player.shrinkstat = player.shrinkstat.add(1);
+			$("body").style.height = "96vh";
+			$("body").style.width = "98vw";
+			$("body").style.fontSize = "16px";
+		}, 2000);
+	}
 }
 
 function buySup(upgrade, cost) {

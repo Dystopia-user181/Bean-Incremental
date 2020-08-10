@@ -14,7 +14,7 @@
 	<script defer charset="utf-8" type="text/javascript" src="js/game/notation.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/tab.js"></script>
 </head>
-<body>
+<body id="body">
 	<p>You start off with 豆 (bean)<br>
 	You divide it into 一口丷一<br>
 	You decide to use the complex spelling of 一, 壹 and end up with 壹口丷壹<br>
@@ -45,10 +45,16 @@
 	<div class="tab" id="Auto" style="display: none;">
 		<table><tbody>
 			<tr>
-				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>You have <span id="autos">0</span> autowriters.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>Each autowriter works once per 4 seconds<br>(Capped at 100000 per autowriter)</button></td>
-				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Cost: <span id="upautocost">1.00e6</span> 士</button></td>
+				<td><button class="upgradebtn" id="buyauto" onclick="buyAuto()">Buy 1 autowriter.<br>You have <span id="autos">0</span> autowriters.<br>Cost: <span id="autowritercost">1.02e3</span> 丷<br>(Capped at 100000 per autowriter)</button></td>
+				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e6', 'dirt')">Autowriters are 4 times as fast<br>Currently: <span id="autointerval">4</span> seconds<br>Cost: <span id="upautocost">1.00e6</span> 士</button></td>
 				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7', 'square')">Autowriters scale 80 instead of 128<br>Cost: <span id="downautocostcost">1.00e7</span> 口</button></td>
 				<td><button class="upgradebtn" id="upautocap" onclick="buyUp('14', '1e8', 'cap')">Autowriter cap is boosted by autowriters<br>Currently: ×<span id="autocapboost">1.00</span><br>Cost: <span id="upautocapcost">1.00e8</span> 冖</button></td>
+			</tr>
+			<tr id="secondrow" style="display: none;">
+				<td><button class="upgradebtn" id="upautospeed" onclick="buyUp('21', '1e9', 'dirt')">Autowriter speed is boosted by 士<br>Currently: ×<span id="autospeedboost">1.00</span><br>Cost: <span id="upautospeedcost">1.00e9</span> 士</button></td>
+				<td><button class="upgradebtn" id="upauto" onclick="buyUp('12', '1e600000', 'dirt')">haha this is a placeholder<br>Cost: <span id="upautocost">1.00e6</span> ass</button></td>
+				<td><button class="upgradebtn" id="downautocost" onclick="buyUp('13', '1e7000', 'square')">Haha this is a placeholder<br>Cost: <span id="downautocostcost">1.00e7</span> ass</button></td>
+				<td><button class="upgradebtn" id="removeautocap" onclick="buyUp('24', '1e130000', 'cmone')">Remove the cap from autowriters, but makes them twice as slow. Upgrades to the autowriter cap affect their speed instead. (DOES NOT WORK)<br>Cost: <span id="removeautocapcost">1.00e13</span> 壹</button></td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -57,7 +63,8 @@
 		<br><br>
 		<table><tbody>
 			<tr>
-				<td><button class="supgradebtn" id="shrinkprice" onclick="buySup('11', '1')">All non-repeatable autowriter purchases are 5x as cheap, all repeatable autowriter purchases scale 25% less<br>Cost: 1 Largely Compact 豆</button></td>
+				<td><button class="supgradebtn" id="shrinkprice" onclick="buySup('11', '1')">All non-repeatable autowriter purchases are 5x as cheap, all repeatable autowriter purchases scale 40% less<br>Cost: 1 Largely Compact 豆</button></td>
+				<td><button class="supgradebtn" id="moreauto" onclick="buySup('12', '1')">Unlock more autowriter upgrades<br>Cost: 1 Largely Compact 豆</button></td>
 			</tr>
 		</tbody></table>
 	</div>

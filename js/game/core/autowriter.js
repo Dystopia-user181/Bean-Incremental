@@ -11,5 +11,5 @@ function buyUp(upgrade, cost, character) {
 	player.char[character] = player.char[character].sub(cost.div(player.sup.includes("11") ? 5 : 1));
 }
 function autoScale() {
-	return (player.upgrades.includes("13") ? 80 : 128)*(player.sup.includes("11") ? 0.75 : 1);
+	return (player.upgrades.includes("13") ? 80 : 128)*(player.sup.includes("11") ? 0.6 : 1);
 }
