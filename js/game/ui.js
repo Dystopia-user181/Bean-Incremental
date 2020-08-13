@@ -27,7 +27,7 @@ function updateUI() {
 	$("replicatecost").innerText = toSci(new Decimal(1e20).div(player.sup.includes("11") ? 5 : 1));
 	$("removeautocapcost").innerText = toSci(new Decimal(1e30).div(player.sup.includes("11") ? 5 : 1));
 	$("shrinkpowamt").innerText = toSci(player.shrinkpow, 1);
-	$("shrinkpowboost").innerText = toSci(player.shrinkpow.pow(2), 2);
+	$("shrinkpowboost").innerText = toSci(player.shrinkpow.pow(2).add(1), 2);
 	$("shrinkeramt").innerText = toSci(player.shrinkers);
 	$("shrinkercost").innerText = toSci(Decimal.pow(2, player.shrinkers).mul(2));
 	$("singboost").innerText = toSci(player.cmpcbean.log(5));
