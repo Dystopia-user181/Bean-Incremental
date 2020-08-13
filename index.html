@@ -82,6 +82,15 @@
 		<button class="buybtn" onclick="buyGen()" id="buyshrink">Buy 1 shrinker<br>Cost: <span id="shrinkercost">2</span> 豆 singularity</button>
 		<br>
 		<button class="buybtn" onclick="buyGenMax()" id="buymaxshrink">Buy Max shrinkers</button>
+		<br><br>
+		<table><tbody>
+			<tr>
+				<td><button class="spupgradebtn" id="shrinkprice" onclick="buySPup('11', '1e3')">Gain more singularities based on singularities<br>Currently: ×<span id="singboost">1.00</span><br>Cost: 1.00e3 shrink power</button></td>
+				<td><button class="spupgradebtn" id="moreauto" onclick="buySPup('12', '1')">Unlock more autowriter upgrades<br>Cost: 1 豆 singularity</button></td>
+				<td><button class="spupgradebtn" id="keepauto" onclick="buySPup('13', '10')">Keep autowriters on shrink<br>Cost: 10 豆 singularity</button></td>
+				<td><button class="spupgradebtn" id="unlockshrinkpow" onclick="buySPup('14', '20')">Unlock shrink power<br>Cost: 20 豆 singularity</button></td>
+			</tr>
+		</tbody></table>
 	</div>
 	<div class="tab" id="Options" style="display: none; width: 100%" align="center">
 		<button class="optionsbtn" onclick="save()">Save</button>

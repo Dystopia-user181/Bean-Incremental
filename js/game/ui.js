@@ -30,6 +30,7 @@ function updateUI() {
 	$("shrinkpowboost").innerText = toSci(player.shrinkpow.pow(2), 2);
 	$("shrinkeramt").innerText = toSci(player.shrinkers);
 	$("shrinkercost").innerText = toSci(Decimal.pow(2, player.shrinkers).mul(2));
+	$("singboost").innerText = toSci(player.cmpcbean.log(5));
 	$("autotabbtn").style.display = getDisplay(player.tutorial.unlockedUps);
 	$("shrinktabbtn").style.display = getDisplay(player.tutorial.unlockedPrestige);
 	$("shrinkbtn").style.display = getDisplay(player.tutorial.unlockedPrestige);

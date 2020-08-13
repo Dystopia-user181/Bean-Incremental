@@ -12,3 +12,8 @@ function buyGenMax() {
 setInterval(function () {
 	player.shrinkpow = player.shrinkpow.add(player.shrinkers.div(100));
 }, 100);
+function buySPup(upgrade, cost) {
+	if (player.shrinkpow.lt(cost) || player.spup.includes(upgrade)) return;
+	player.shrinkpow = player.shrinkpow.sub(cost);
+	player.spup.push(upgrade);
+}

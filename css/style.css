@@ -88,6 +88,23 @@ button.supgradebtn {
 	height: 8em;
 	width: 100%;
 }
+
+button.spupgradebtn:enabled {
+	border: 0.125em dashed #8d2;
+}
+button.spupgradebtn:disabled {
+	border: 0.125em solid #f44;
+}
+button.spupgradebtn.bought {
+	border: 0.125em solid #ff5;
+	background-color: #060;
+	opacity: 1;
+}
+button.spupgradebtn {
+	height: 8em;
+	width: 100%;
+}
+
 td {
 	width: 22%;
 }

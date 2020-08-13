@@ -14,7 +14,7 @@ function defaultPlayer() {
 		autobought: new Decimal(0),
 		upgrades: [],
 		sup: [],
-		powup: [],
+		spup: [],
 		shrinkpow: new Decimal(0),
 		shrinkers: new Decimal(0),
 		cmpcbean: new Decimal(0),

@@ -43,7 +43,7 @@ function iter(max=0, mult=1) {
 function iterbtn() {
 	var pc = player.char;
 	$("iterbtn").disabled = true;
-	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.pow(2)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)}s all linear`;
+	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.pow(2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)}s all linear`;
 	setTimeout(function() {
 		$("iterbar").style.width = "100%";
 		setTimeout(function() {
@@ -51,7 +51,7 @@ function iterbtn() {
 			$("iterbar").style.width = "2%";
 			$("iterbtn").disabled = false;
 			iter();
-		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.pow(2)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)*1000);
+		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.pow(2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)*1000);
 	}, 50);
 }
 
@@ -65,7 +65,7 @@ function autowritertick() {
 	var auto = player.auto.mul(player.upgrades.includes("22") ? 2 : 1);
 	var pc = player.char;
 	var sumOfAllChar = pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap);
-	var autospeed = auto.mul(player.upgrades.includes("12") ? 4 : 1).mul(player.upgrades.includes("24") ? (player.upgrades.includes("14") ? auto.mul((2)).add(1) : 1).div(sumOfAllChar.pow(0.1).div(sumOfAllChar.log(15))) : 1).mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1).mul(player.shrinkpow.pow(2));
+	var autospeed = auto.mul(player.upgrades.includes("12") ? 4 : 1).mul(player.upgrades.includes("24") ? (player.upgrades.includes("14") ? auto.mul((2)).add(1) : 1).div(sumOfAllChar.pow(0.1).div(sumOfAllChar.log(15))) : 1).mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1).mul(player.shrinkpow.pow(2).add(1));
 	if (autospeed.lt(0.01)) {
 		setTimeout(autowritertick, 1000);
 		return;
