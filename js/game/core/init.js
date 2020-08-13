@@ -11,8 +11,12 @@ function defaultPlayer() {
 		},
 		iterlvl: 0,
 		auto: new Decimal(0),
+		autobought: new Decimal(0),
 		upgrades: [],
 		sup: [],
+		powup: [],
+		shrinkpow: new Decimal(0),
+		shrinkers: new Decimal(0),
 		cmpcbean: new Decimal(0),
 		shrinkstat: new Decimal(0),
 		tutorial: {
