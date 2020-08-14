@@ -9,6 +9,7 @@
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/autowriter.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/prestige.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/core/shrinkpow.js"></script>
+	<script defer charset="utf-8" type="text/javascript" src="js/game/core/tree.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/saving.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/loading.js"></script>
 	<script defer charset="utf-8" type="text/javascript" src="js/game/ui.js"></script>
@@ -27,6 +28,7 @@
 		<button onclick="player.navigation.tab = 'Auto'" id="autotabbtn" style="display: none;">Autowriters</button>
 		<button onclick="player.navigation.tab = 'Shrink'" id="shrinktabbtn" style="display: none;">Shrink</button>
 		<button onclick="player.navigation.tab = 'ShrinkPow'" id="shrinkpowtabbtn" style="display: none;">Shrink Power</button>
+		<button onclick="player.navigation.tab = 'ShrinkTree'" id="shrinktreetabbtn" style="display: none;">Shrink Tree</button>
 		<button onclick="player.navigation.tab = 'Options'">Options</button>
 	</div>
 	<button class="prestigebtn" id="shrinkbtn" onclick="shrink()" style="display: none; right: 0;">Shrink all characters into <span id="shrinkamt">1</span> 豆 singularity</button>
@@ -57,8 +59,14 @@
 			<tr id="secondrow" style="display: none;">
 				<td><button class="upgradebtn" id="upautospeed" onclick="buyUp('21', '1e9', 'dirt')">Autowriter speed is boosted by 士<br>Currently: ×<span id="autospeedboost">1.00</span><br>Cost: <span id="upautospeedcost">1.00e9</span> 士</button></td>
 				<td><button class="upgradebtn" id="bulkmore" onclick="buyUp('22', '1e12', 'legs')">You gain twice as many autowriters.<br>Cost: <span id="bulkmorecost">1.00e12</span> 丷</button></td>
-				<td><button class="upgradebtn" id="replicate" onclick="buyUp('23', '1e20', 'cap')">Autowriters replicate themselves at a rate of 0.002 auto per auto per sec<br>Cost: <span id="replicatecost">1.00e20</span> 冖</button></td>
+				<td><button class="upgradebtn" id="replicate" onclick="buyUp('23', '1e20', 'cap')">Autowriters replicate themselves at a rate of 0.01 auto per auto per sec<br>Cost: <span id="replicatecost">1.00e20</span> 冖</button></td>
 				<td><button class="upgradebtn" id="removeautocap" onclick="buyUp('24', '1e30', 'cmone')">Remove the cap from autowriters, but makes them get slower as you get more characters. Upgrades to the autowriter cap affect their speed instead.<br>Cost: <span id="removeautocapcost">1.00e30</span> 壹</button></td>
+			</tr>
+			<tr id="thirdrow" style="display: none;">
+				<td><button class="upgradebtn" id="upautospeed2" onclick="buyUp('31', '1e1000', 'dirt')">Autowriter speed is boosted by number of times shrunk<br>Currently: ×<span id="autospeedboost2">1.00</span><br>Cost: <span id="upautospeed2cost">1.00e1000</span> 士</button></td>
+				<td><button class="upgradebtn" id="upautospeed3" onclick="buyUp('32', '1e1500', 'dirt')">Autowriters are 300 times as fast.<br>Cost: <span id="upautospeed3cost">1.00e1500</span> 士</button></td>
+				<td><button class="upgradebtn" id="replicate2" onclick="buyUp('33', '1e2000', 'cap')">Autowriters replicate at 0.05 per sec instead of 0.01<br>Cost: <span id="replicate2cost">1.00e2000</span> 冖</button></td>
+				<td><button class="upgradebtn" id="givedysideas" onclick="buyUp('34', '1e30000', 'cmone')">Get Dystopia more ideas before the game jam ends.<br>Cost: <span id="givedysideascost">1.00e30000</span> 壹</button></td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -67,10 +75,16 @@
 		<br><br>
 		<table><tbody>
 			<tr>
-				<td><button class="supgradebtn" id="shrinkprice" onclick="buySup('11', '1')">All non-repeatable autowriter purchases are 5x as cheap, all repeatable autowriter purchases scale 40% less<br>Cost: 1 豆 singularity</button></td>
+				<td><button class="supgradebtn" id="shrinkprice" onclick="buySup('11', '1')">All autowriter upgrades are 5x as cheap, autowriter purchases scale 40% less<br>Cost: 1 豆 singularity</button></td>
 				<td><button class="supgradebtn" id="moreauto" onclick="buySup('12', '1')">Unlock more autowriter upgrades<br>Cost: 1 豆 singularity</button></td>
-				<td><button class="supgradebtn" id="keepauto" onclick="buySup('13', '10')">Keep autowriters on shrink<br>Cost: 10 豆 singularity</button></td>
+				<td><button class="supgradebtn" id="keepauto" onclick="buySup('13', '10')">Keep autowriters upgrades and autowriters on shrink<br>Cost: 10 豆 singularity</button></td>
 				<td><button class="supgradebtn" id="unlockshrinkpow" onclick="buySup('14', '20')">Unlock shrink power<br>Cost: 20 豆 singularity</button></td>
+			</tr>
+			<tr id="secondsing" style="display: none;">
+				<td><button class="supgradebtn" id="moresing" onclick="buySup('21', '1e100')">Singularity gain is boosted by times shrunk<br>Currently: ×<span id="singboost2">1.00</span><br>Cost: 1.00e100 豆 singularity</button></td>
+				<td><button class="supgradebtn" id="morepower" onclick="buySup('22', '1e150')">Singularity boosts shrink power gain<br>Currently: ×<span id="shringpowboost">1.00</span><br>Cost: 1.00e150 豆 singularity</button></td>
+				<td><button class="supgradebtn" id="keepsing" onclick="buySup('23', '1e230')">Gain 1% of singularity gained per second<br>Cost: 1.00e230 豆 singularity</button></td>
+				<td><button class="supgradebtn" id="helpdysweight" onclick="buySup('24', '1e2000')">Help dystopia gain weight<br>Cost: 1.00e2000 豆 singularity</button></td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -85,20 +99,50 @@
 		<br><br>
 		<table><tbody>
 			<tr>
-				<td><button class="spupgradebtn" id="shrinkprice" onclick="buySPup('11', '1e3')">Gain more singularities based on singularities<br>Currently: ×<span id="singboost">1.00</span><br>Cost: 1.00e3 shrink power</button></td>
-				<td><button class="spupgradebtn" id="moreauto" onclick="buySPup('12', '1')">Unlock more autowriter upgrades<br>Cost: 1 豆 singularity</button></td>
-				<td><button class="spupgradebtn" id="keepauto" onclick="buySPup('13', '10')">Keep autowriters on shrink<br>Cost: 10 豆 singularity</button></td>
-				<td><button class="spupgradebtn" id="unlockshrinkpow" onclick="buySPup('14', '20')">Unlock shrink power<br>Cost: 20 豆 singularity</button></td>
+				<td><button class="spupgradebtn" id="sing" onclick="buySPup('11', '1e3')">Gain more singularities based on singularities<br>Currently: ×<span id="singboost">1.00</span><br>Cost: 1.00e3 shrink power</button></td>
+				<td><button class="spupgradebtn" id="morepow" onclick="buySPup('12', '2e3')">Gain five times as much shrink power<br>Cost: 2.00e3 shrink power</button></td>
+				<td><button class="spupgradebtn" id="powboost" onclick="buySPup('13', '2e4')">Shrink power effect is ^3 instead of ^2<br>Cost: 2.00e4 shrink power</button></td>
+				<td><button class="spupgradebtn" id="unlocktree" onclick="buySPup('14', '1e5')">Unlock skill tree<br>Cost: 1.00e5 shrink power</button></td>
 			</tr>
 		</tbody></table>
 	</div>
+	<div class="tab" id="ShrinkTree">
+		<div style="width: 100%" align="center">
+			<button class="treebtn" id="11rstc800" onclick="buyStudy('11', '1e800', 'st')">Unlock the second row of singularity upgrades<br>Cost: 1.00e800 士</button>
+			<br><br><div style="display: flex; align-items: center; justify-content: center;">
+				<button class="treebtn" id="21r11c1000" onclick="buyStudy('21', '1e1000', '11')">Autowriters softcap later<br>Cost: 1.00e1000 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="22r11c1000" onclick="buyStudy('22', '1e1000', '11')">Automate purchasing of autowriters and shrinkers<br>Cost: 1.00e1000 士</button>
+			</div>
+			<br><div style="display: flex; align-items: center; justify-content: center;">
+				<button class="treebtn" id="31r21c2000" onclick="buyStudy('31', '1e2000', '21')">Shrinkers are 3 times as effective for every 10 bought, shrink pow effect is ^4<br>Cost: 1.00e2000 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="32r22c2000" onclick="buyStudy('32', '1e2000', '22')">Unlock third row of autowriter upgrades<br>Cost: 1.00e2000 士</button>
+			</div>
+			<br><div style="display: flex; align-items: center; justify-content: center;">
+				<button class="treebtn" id="41r31c2100" onclick="buyStudy('41', '1e2100', '31')">Singularity gain formula is better<br>Cost: 1.00e2100 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="42r32c2200" onclick="buyStudy('42', '1e2200', '32')">Autowriters are 1.1 times as effective for every autowriter bought<br>Cost: 1.00e2200 士</button>
+			</div>
+			<br><div style="display: flex; align-items: center; justify-content: center;">
+				<button class="treebtn" id="51r41c2500" onclick="buyStudy('51', '1e2500', '41')">Gain a multiplier to singularity gain based on number of studies<br>Cost: 1.00e2500 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="52r41c2500" onclick="buyStudy('52', '1e2500', '41')">Shrinker scaling is lowered from 2 to 1.5<br>Cost: 1.00e2500 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="53r42c2500" onclick="buyStudy('53', '1e2500', '42')">Finish the game...<br>Cost: 1.00e2500 士</button>
+				<div style="width: 0.4em"></div>
+				<button class="treebtn" id="54r42069c15000000000" onclick="buyStudy('54', '1e1500000000', '42')">This is a center placeholder button.<br>Cost: 1.00e1500 士</button>
+			</div>
+		</div>
+		<br><br><br><br>
+	</div><button class="treebtn" id="str0c0" style="display: none; position: absolute;"></button>
 	<div class="tab" id="Options" style="display: none; width: 100%" align="center">
 		<button class="optionsbtn" onclick="save()">Save</button>
 		<button class="optionsbtn" onclick="reset()">Reset</button>
 		<button class="optionsbtn" onclick="expo()">Export</button>
 		<button class="optionsbtn" onclick="impo()">Import</button>
 	</div>
-	<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px; position: absolute; bottom: 50px;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
+	<div style="width: 30vw; height: 20px; border: 3px solid #fff; border-radius: 3px; position: fixed; bottom: 0;"><div style="width: 2%; height: 100%; background: linear-gradient(to right, #191, #4d4);" id="iterbar"></div></div>
 	<textarea id="savetext" style="display: none;"></textarea>
 </body>
 </html>

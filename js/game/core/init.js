@@ -15,6 +15,7 @@ function defaultPlayer() {
 		upgrades: [],
 		sup: [],
 		spup: [],
+		skup: ["st"],
 		shrinkpow: new Decimal(0),
 		shrinkers: new Decimal(0),
 		cmpcbean: new Decimal(0),

@@ -4,7 +4,7 @@ body {
 	font-family: Lucida Console;
 	transition: all 1s;
 	position: absolute;
-	height: 96vh;
+	height: 97vh;
 	width: 98vw;
 	font-size: 16px;
 }
@@ -105,11 +105,29 @@ button.spupgradebtn {
 	width: 100%;
 }
 
+button.treebtn:enabled {
+	border: 0.125em solid #b49;
+}
+button.treebtn:disabled {
+	border: 0.125em solid #f00;
+	background: #444;
+}
+button.treebtn.bought {
+	border: 0.125em solid #312;
+	background-color: #624;
+	opacity: 1;
+}
+button.treebtn {
+	font-size: 0.9em;
+	height: 6em;
+	width: 15em;
+}
+
 td {
 	width: 22%;
 }
 tr {
-	width: 98%;
+	width: 100%;
 }
 table {
 	width: 98%;
