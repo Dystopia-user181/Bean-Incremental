@@ -1,18 +1,19 @@
 function iter(max=0, mult=1) {
 	max = new Decimal(max);
+	mult = new Decimal(mult);
 	var cmone = player.char.cmone;
 	var bean = player.char.bean;
 	if (max.eq(0)) {
-		player.char.dirt = player.char.dirt.add(cmone.mul(Decimal.pow(2, mult)));
-		player.char.cap = player.char.cap.add(cmone.mul(Decimal.pow(2, mult)));
+		player.char.dirt = player.char.dirt.add(cmone.mul(Decimal.pow(2, mult.sub(1))));
+		player.char.cap = player.char.cap.add(cmone.mul(Decimal.pow(2, mult.sub(1))));
 
-		player.char.cmone = player.char.one.mul(Decimal.pow(2, mult));
+		player.char.cmone = player.char.one.mul(Decimal.pow(2, mult.sub(1)));
 
-		player.char.one = bean.mul(2).mul(Decimal.pow(2, mult));
-		player.char.square = player.char.square.add(bean.mul(Decimal.pow(2, mult)));
-		player.char.legs = player.char.legs.add(bean.mul(Decimal.pow(2, mult)));
+		player.char.one = bean.mul(2).mul(Decimal.pow(2, mult.sub(1)));
+		player.char.square = player.char.square.add(bean.mul(Decimal.pow(2, mult.sub(1))));
+		player.char.legs = player.char.legs.add(bean.mul(Decimal.pow(2, mult.sub(1))));
 
-		player.char.bean = cmone.mul(Decimal.pow(2, mult));
+		player.char.bean = cmone.mul(Decimal.pow(2, mult.sub(1)));
 	} else {
 		player.char.dirt = player.char.dirt.add(cmone.min(max).mul(mult));
 		player.char.cap = player.char.cap.add(cmone.min(max).mul(mult));
