@@ -43,7 +43,7 @@ function iter(max=0, mult=1) {
 function iterbtn() {
 	var pc = player.char;
 	$("iterbtn").disabled = true;
-	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)}s all linear`;
+	$("iterbar").style.transition = `${Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl + 1, 1.1)}s all linear`;
 	setTimeout(function() {
 		$("iterbar").style.width = "100%";
 		setTimeout(function() {
@@ -51,7 +51,7 @@ function iterbtn() {
 			$("iterbar").style.width = "1%";
 			$("iterbtn").disabled = false;
 			iter();
-		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl, 1.1)*1000);
+		}, Math.pow(pc.bean.add(pc.one).add(pc.square).add(pc.legs).add(pc.cmone).add(pc.dirt).add(pc.cap).add(5).div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).log(10), 1.1)/Math.pow(player.iterlvl + 1, 1.1)*1000);
 	}, 50);
 }
 
