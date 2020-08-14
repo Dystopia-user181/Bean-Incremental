@@ -12,7 +12,16 @@ function updateUI() {
 	$("autos").innerText = toSci(player.auto.mul(player.upgrades.includes("22") ? 2 : 1));
 	$("autocapamt").innerText = player.upgrades.includes("24") ? "Uncapped" : `Capped at ${toSci(player.upgrades.includes("13") ? player.auto.mul((player.upgrades.includes("22") ? 4 : 2)).add(1) : new Decimal(1).mul(1e5))} per autowriter`;
 	$("bulkautoamt").innerText = `${1} autowriter`;
-	$("autointerval").innerText = toSci(auto.mul(player.upgrades.includes("12") ? 4 : 1).mul(player.upgrades.includes("24") ? (player.upgrades.includes("14") ? auto.mul((2)).add(1) : 1).div(sumOfAllChar.div(player.shrinkpow.pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).pow(player.skup.includes("21") ? 0.06 : 0.1).div(sumOfAllChar.div(player.shrinkpow.pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).add(15).log(15))) : 1).mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1).mul(player.shrinkpow.pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).mul(0.25), 2);
+	$("autointerval").innerText = toSci(auto.mul(player.upgrades.includes("12") ? 4 : 1)
+		.mul(player.upgrades.includes("24") ? (
+			(player.upgrades.includes("14") ? auto.mul((2)).add(1) : new Decimal(1))
+			.div(
+			sumOfAllChar.div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).pow(player.skup.includes("21") ? 0.06 : 0.1)
+			.div(sumOfAllChar.div(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1)).add(15).log(15)))) : 1)
+		.mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1)
+		.mul(player.shrinkpow.add(1).pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1))
+		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
+		.mul(player.upgrades.includes("32") ? 100 : 1).mul(0.25), 2);
 	$("cmpcbeanamt").innerText = toSci(player.cmpcbean);
 	$("shrinkamt").innerText = toSci(sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.17 : 0.1).mul(player.spup.includes("11") ? player.cmpcbean.add(5).log(5) : 1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).floor().floor());
 	$("autocapboost").innerText = toSci(player.auto.mul((player.upgrades.includes("22") ? 4 : 2)).add(1), 2);

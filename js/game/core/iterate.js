@@ -76,7 +76,7 @@ function autowritertick() {
 		.mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1)
 		.mul(shrinkeff.add(1))
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
-		.mul(player.upgrades.includes("32") ? 300 : 1);
+		.mul(player.upgrades.includes("32") ? 100 : 1);
 	if (autospeed.lt(0.001)) {
 		setTimeout(autowritertick, 100);
 		return;
