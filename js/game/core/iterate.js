@@ -71,12 +71,12 @@ function autowritertick() {
 		.mul(player.upgrades.includes("24") ? (
 			(player.upgrades.includes("14") ? auto.mul((2)).add(1) : new Decimal(1))
 			.div(
-			sumOfAllChar.div(shrinkeff).pow(player.skup.includes("21") ? 0.06 : 0.1)
-			.div(sumOfAllChar.div(shrinkeff).add(15).log(15)))) : 1)
+			sumOfAllChar.div(player.shrinkpow.add(1).pow(shrinkeff).add(1)).pow(player.skup.includes("21") ? 0.06 : 0.1)
+			.div(sumOfAllChar.div(player.shrinkpow.add(1).pow(shrinkeff).add(1)).add(15).log(15)))) : 1)
 		.mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1)
+		.mul(shrinkeff.add(1))
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
 		.mul(player.upgrades.includes("32") ? 100 : 1);
-	console.log(autospeed);
 	if (autospeed.lte(0)) {
 		setTimeout(autowritertick, 100);
 		return;
@@ -84,7 +84,6 @@ function autowritertick() {
 	if (autospeed.gte(40)) {
 		setTimeout(autowritertick, 100);
 		iter(player.upgrades.includes("24") ? 0 : auto.mul(2500).mul(player.upgrades.includes("14") ? auto.mul(2).add(1) : 1), autospeed.div(40));
-		console.log(player.upgrades.includes("24") ? 0 : auto.mul(2500).mul(player.upgrades.includes("14") ? auto.mul(2).add(1) : 1));
 	} else {
 		setTimeout(autowritertick, 4000/autospeed.toNumber());
 		iter(Decimal.mul((player.upgrades.includes("24") ? 0 : (player.upgrades.includes("14") ? auto.mul(2).add(1) : 1)), 100000), 1);
