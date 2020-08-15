@@ -4,16 +4,16 @@ function iter(max=0, mult=1) {
 	var cmone = player.char.cmone;
 	var bean = player.char.bean;
 	if (max.eq(0)) {
-		player.char.dirt = player.char.dirt.add(cmone.mul(Decimal.pow(2, mult.sub(1))));
-		player.char.cap = player.char.cap.add(cmone.mul(Decimal.pow(2, mult.sub(1))));
+		player.char.dirt = player.char.dirt.add(cmone.mul(mult));
+		player.char.cap = player.char.cap.add(cmone.mul(mult));
 
-		player.char.cmone = player.char.one.mul(Decimal.pow(2, mult.sub(1)));
+		player.char.cmone = player.char.one.mul(mult);
 
-		player.char.one = bean.mul(2).mul(Decimal.pow(2, mult.sub(1)));
-		player.char.square = player.char.square.add(bean.mul(Decimal.pow(2, mult.sub(1))));
-		player.char.legs = player.char.legs.add(bean.mul(Decimal.pow(2, mult.sub(1))));
+		player.char.one = bean.mul(2).mul(mult);
+		player.char.square = player.char.square.add(bean.mul(mult));
+		player.char.legs = player.char.legs.add(bean.mul(mult));
 
-		player.char.bean = cmone.mul(Decimal.pow(2, mult.sub(1)));
+		player.char.bean = cmone.mul(mult);
 	} else {
 		player.char.dirt = player.char.dirt.add(cmone.min(max).mul(mult));
 		player.char.cap = player.char.cap.add(cmone.min(max).mul(mult));
@@ -71,10 +71,10 @@ function autowritertick() {
 		.mul(player.upgrades.includes("24") ? (
 			(player.upgrades.includes("14") ? auto.mul((2)).add(1) : 1)
 			.div(
-			sumOfAllChar.div(shrinkeff.add(1)).pow(player.skup.includes("21") ? 0.06 : 0.1)
-			.div(sumOfAllChar.div(shrinkeff.add(1)).add(15).log(15)))) : 1)
+			sumOfAllChar.div(shrinkeff).pow(player.skup.includes("21") ? 0.06 : 0.1)
+			.div(sumOfAllChar.div(shrinkeff).add(15).log(15)))) : 1)
 		.mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1)
-		.mul(shrinkeff.add(1))
+		.mul(shrinkeff)
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
 		.mul(player.upgrades.includes("32") ? 100 : 1);
 	if (autospeed.lt(0.001)) {
