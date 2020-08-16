@@ -84,9 +84,10 @@ function autowritertick() {
 	if (autospeed.gte(40)) {
 		setTimeout(autowritertick, 100);
 		iter(player.upgrades.includes("24") ? 0 : auto.mul(2500).mul(player.upgrades.includes("14") ? auto.mul(2).add(1) : 1), autospeed.div(40));
+		console.log(autospeed.div(40));
 	} else {
 		setTimeout(autowritertick, 4000/autospeed.toNumber());
-		iter(Decimal.mul((player.upgrades.includes("24") ? 0 : (player.upgrades.includes("14") ? auto.mul(2).add(1) : 1)), 100000), 1);
+		iter(Decimal.mul(player.upgrades.includes("24") ? 0 : (player.upgrades.includes("14") ? auto.mul(2).add(1) : 1), 100000), 1);
 	}
 }
 autowritertick();
