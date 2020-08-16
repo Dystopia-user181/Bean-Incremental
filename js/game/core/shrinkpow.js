@@ -1,12 +1,12 @@
 function buyGen() {
-	if (player.cmpcbean.lt(Decimal.pow(2, player.shrinkers).mul(2))) return;
+	if (player.cmpcbean.lt(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers).mul(2))) return;
 	player.shrinkers = player.shrinkers.add(1);
-	player.cmpcbean = player.cmpcbean.sub(Decimal.pow(2, player.shrinkers));
+	player.cmpcbean = player.cmpcbean.sub(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers));
 }
 function buyGenMax() {
-	if (player.cmpcbean.lt(Decimal.pow(2, player.shrinkers).mul(2))) return;
-	var shrinkeramt = new Decimal(Math.floor(player.cmpcbean.add(Decimal.pow(2, player.shrinkers)).log(2))).sub(player.shrinkers);
-	player.cmpcbean = player.cmpcbean.sub(Decimal.pow(2, player.shrinkers.add(shrinkeramt)));
+	if (player.cmpcbean.lt(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers).mul(2))) return;
+	var shrinkeramt = new Decimal(Math.floor(player.cmpcbean.add(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers)).log(player.skup.includes("52") ? 1.5 : 2))).sub(player.shrinkers);
+	player.cmpcbean = player.cmpcbean.sub(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers.add(shrinkeramt)));
 	player.shrinkers = player.shrinkers.add(shrinkeramt);
 }
 setInterval(function () {

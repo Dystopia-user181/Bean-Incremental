@@ -23,7 +23,7 @@ function updateUI() {
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
 		.mul(player.upgrades.includes("32") ? 100 : 1).mul(0.25), 2);
 	$("cmpcbeanamt").innerText = toSci(player.cmpcbean);
-	$("shrinkamt").innerText = toSci(sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.17 : 0.1).mul(player.spup.includes("11") ? player.cmpcbean.add(5).log(5) : 1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).floor().floor());
+	$("shrinkamt").innerText = toSci(sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.17 : 0.1).mul(player.spup.includes("11") ? player.cmpcbean.add(5).log(5) : 1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).mul(player.skup.includes("51") ? player.skup.length.pow(2) : 1).floor());
 	$("autocapboost").innerText = toSci(player.auto.mul((player.upgrades.includes("22") ? 4 : 2)).add(1), 2);
 	$("autospeedboost").innerText = toSci(pc.dirt.add(10).log10(), 2);
 	$("autospeedboost2").innerText = toSci(player.shrinkstat.add(1).pow(6), 2);
@@ -45,7 +45,7 @@ function updateUI() {
 	$("shrinkpowamt").innerText = toSci(player.shrinkpow, 1);
 	$("shrinkpowboost").innerText = toSci(player.shrinkpow.pow(player.skup.includes("31") ? 4 : player.spup.includes("13") ? 3 : 2).add(1), 2);
 	$("shrinkeramt").innerText = toSci(player.shrinkers);
-	$("shrinkercost").innerText = toSci(Decimal.pow(2, player.shrinkers).mul(2));
+	$("shrinkercost").innerText = toSci(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers).mul(2));
 	$("singboost").innerText = toSci(player.cmpcbean.add(5).log(5));
 	$("autotabbtn").style.display = getDisplay(player.tutorial.unlockedUps);
 	$("shrinktabbtn").style.display = getDisplay(player.tutorial.unlockedPrestige);
@@ -57,8 +57,8 @@ function updateUI() {
 	$("shrinktreetabbtn").style.display = getDisplay(player.spup.includes("14"));
 	$("upiterbtn").disabled = player.char.square.lt(Decimal.mul(32, Decimal.pow(750, player.iterlvl)));
 	$("shrinkbtn").disabled = sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.13 : 0.1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).floor().lt(1);
-	$("buyshrink").disabled = player.cmpcbean.lt(Decimal.pow(2, player.shrinkers).mul(2));
-	$("buymaxshrink").disabled = player.cmpcbean.lt(Decimal.pow(2, player.shrinkers).mul(2));
+	$("buyshrink").disabled = player.cmpcbean.lt(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers).mul(2));
+	$("buymaxshrink").disabled = player.cmpcbean.lt(Decimal.pow(player.skup.includes("52") ? 1.5 : 2, player.shrinkers).mul(2));
 	$("buyauto").disabled = pc.legs.lt(Decimal.pow(autoScale(), player.autobought).mul(autoScale()));
 	$("upauto").disabled = pc.dirt.lt(1e6/(player.sup.includes("11") ? 5 : 1)) || player.upgrades.includes("12");
 	$("upauto").className = `upgradebtn${player.upgrades.includes("12") ? " bought" : ""}`;
