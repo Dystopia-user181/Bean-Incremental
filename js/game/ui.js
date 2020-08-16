@@ -23,7 +23,7 @@ function updateUI() {
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
 		.mul(player.upgrades.includes("32") ? 100 : 1).mul(0.25), 2);
 	$("cmpcbeanamt").innerText = toSci(player.cmpcbean);
-	$("shrinkamt").innerText = toSci(sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.17 : 0.1).mul(player.spup.includes("11") ? player.cmpcbean.add(5).log(5) : 1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).mul(player.skup.includes("51") ? player.skup.length.pow(2) : 1).floor());
+	$("shrinkamt").innerText = toSci(sumOfAllChar.div(1e10).pow(player.skup.includes() ? 0.17 : 0.1).mul(player.spup.includes("11") ? player.cmpcbean.add(5).log(5) : 1).mul(player.sup.includes("21") ? player.shrinkstat.add(1).pow(1.5) : 1).mul(player.skup.includes("51") ? Math.pow(player.skup.length, 2) : 1).floor());
 	$("autocapboost").innerText = toSci(player.auto.mul((player.upgrades.includes("22") ? 4 : 2)).add(1), 2);
 	$("autospeedboost").innerText = toSci(pc.dirt.add(10).log10(), 2);
 	$("autospeedboost2").innerText = toSci(player.shrinkstat.add(1).pow(6), 2);

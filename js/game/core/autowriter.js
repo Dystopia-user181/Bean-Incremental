@@ -6,8 +6,8 @@ function buyAuto() {
 }
 function buyAutoMax() {
 	if (player.char.legs.lt(Decimal.pow(autoScale(), player.autobought).mul(autoScale()))) return;
-	var autoamt = new Decimal(Math.floor(player.char.legs.log(autoScale()))).sub(player.auto);
-	player.char.legs = player.char.legs.sub(Decimal.pow(autoScale(), player.auto.add(autoamt)));
+	var autoamt = new Decimal(Math.floor(player.char.legs.log(autoScale()))).sub(player.autobought);
+	player.char.legs = player.char.legs.sub(Decimal.pow(autoScale(), player.autobought.add(autoamt)));
 	player.autobought = player.autobought.add(autoamt);
 	player.auto = player.auto.add(autoamt);
 }

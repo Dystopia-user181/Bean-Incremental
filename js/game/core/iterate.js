@@ -71,13 +71,13 @@ function autowritertick() {
 		.mul(player.upgrades.includes("24") ? (
 			(player.upgrades.includes("14") ? auto.mul((2)).add(1) : new Decimal(1))
 			.div(
-			sumOfAllChar.div(player.shrinkpow.add(1).pow(shrinkeff).add(1)).pow(player.skup.includes("21") ? 0.06 : 0.1)
-			.div(sumOfAllChar.div(player.shrinkpow.add(1).pow(shrinkeff).add(1)).add(15).log(15)))) : 1)
+			sumOfAllChar.div(shrinkeff).pow(player.skup.includes("21") ? 0.06 : 0.1)
+			.div(sumOfAllChar.div(shrinkeff).add(15).log(15)))) : 1)
 		.mul(player.upgrades.includes("21") ? player.char.dirt.add(10).log10() : 1)
-		.mul(shrinkeff.add(1))
+		.mul(shrinkeff.pow(2))
 		.mul(player.upgrades.includes("31") ? player.shrinkstat.add(1).pow(6) : 1)
-		.mul(player.upgrades.includes("32") ? 100 : 1).mul(0.25);
-	if (autospeed.lte(0)) {
+		.mul(player.upgrades.includes("32") ? 100 : 1);
+	if (autospeed.lte(0.0001)) {
 		setTimeout(autowritertick, 100);
 		return;
 	}
